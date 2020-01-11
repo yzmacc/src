@@ -10,7 +10,7 @@ library(tidytext)
 ted_main <- read_csv("./ted_main.csv")
 scripts_all <- read_csv("./transcripts.csv")
 
-# (1) TAGS
+# (1) Tags相關研究
 
 # 選出觀看次數前100的影片
 top100 <- ted_main %>%
@@ -471,7 +471,7 @@ ggplot(anyl_test) +
   labs(title = '" They " 第一次出現位置以及次數')
 
 
-# (4)年分和tags分布
+# (4) tag歷年流變
 
 # 將timestamp轉成日期格式
 ted_main$film_date <- anydate(ted_main$film_date)
