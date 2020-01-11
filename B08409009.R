@@ -60,26 +60,28 @@ funny_rate_count <- as.numeric(funny_rate_count)
 data_only_funny_rate <- as.data.frame(funny_rate_count)
 ted_with_laughter <- cbind(ted_with_laughter, data_only_funny_rate)
 
-#laughter_count大於20
-about_laughter <- filter(ted_with_laughter, laughter_count >=20)
 
 #視覺化
 ##laughter_count&funny_rate_count
 ted_with_laughter_a <- ted_with_laughter[-1,]
-vis_laughter_funny <- ggplot(ted_with_laughter_a)+
-  geom_point(mapping = aes(y = funny_rate_count, x = laughter_count),stat = "identity")+
+laughter_funny_lm <- lm(funny_rate_count ~ laughter_count, data = ted_with_laughter_a) 
+vis_laughter_funny <- ggplot(ted_with_laughter_a, aes(y = funny_rate_count, x = laughter_count))+
+  geom_point()+
   geom_hline(yintercept = mean(ted_with_laughter_a$funny_rate_count), color = "red", size = 1 )+
   ggtitle("Laughter次數與Funny Ratings數的關聯")+
   labs(x = "Laughter次數", y = "funny ratings 數")+
-  theme_bw()
+  theme_bw()+
+  geom_smooth(method = lm)
 
 ##laughter_count&views
-vis_laughter_view <- ggplot(ted_with_laughter_a)+
-  geom_point(mapping = aes(x = laughter_count, y = views/10000),stat = "identity", color = "blue")+
+laughter_view_lm <- lm(views/10000 ~ laughter_count, data = ted_with_laughter_a)
+vis_laughter_view <- ggplot(ted_with_laughter_a, aes(y = views/10000, x = laughter_count))+
+  geom_point()+
   geom_hline(yintercept = mean(ted_with_laughter_a$views)/10000, color = "red", size = 1 )+
   ggtitle("Laughter次數與觀看次數的關聯")+
-  lab(x = "Laughter次數", y = "觀看人數(萬)")+
-  theme_bw()
+  labs(x = "Laughter次數", y = "觀看人數(萬)")+
+  theme_bw()+
+  geom_smooth(method = lm)
 
 #蒐集data science speaker 的資料
 data_occu <- unique(str_subset(ted$speaker_occupation, "^Data"))
