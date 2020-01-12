@@ -1,5 +1,6 @@
 # 原始碼說明文件
-## Raw data 請見: https://www.kaggle.com/rounakbanik/ted-talks
+下方為各個組員負責部分之原始碼說明。
+本專案的 Raw data 請見: https://www.kaggle.com/rounakbanik/ted-talks
 
 # R script 檔案說明
 
