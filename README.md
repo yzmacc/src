@@ -1,7 +1,7 @@
-# src
-R語言與資料科學導論
+# 原始碼說明文件
+## Raw data 請見: https://www.kaggle.com/rounakbanik/ted-talks
 
-# 檔案說明
+# R script 檔案說明
 
 ## B08409009.R
 
